@@ -21,6 +21,7 @@ build/bin
 cache.db
 
 coverage.out
+coverage.html
 
 	debug
 
