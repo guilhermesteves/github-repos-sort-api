@@ -2,6 +2,7 @@ package utils
 
 import (
 	"context"
+	"go.mongodb.org/mongo-driver/bson"
 	"log"
 	"time"
 
@@ -50,4 +51,19 @@ func DisconnectFromMongo(client *mongo.Client) error {
 	}
 
 	return nil
+}
+
+func CursorToArray(ctx context.Context, cursor *mongo.Cursor) bson.A {
+	var result = bson.A{}
+
+	for cursor.Next(ctx) {
+		elem := &bson.M{}
+		if err := cursor.Decode(elem); err != nil {
+			log.Println(err)
+		} else {
+			result = append(result, *elem)
+		}
+	}
+
+	return result
 }
