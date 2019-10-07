@@ -1,0 +1,1 @@
+protoc --go_out=../../../../../ --proto_path=../../internal/model/ ../../api/model/*.proto
