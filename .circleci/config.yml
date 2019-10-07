@@ -9,7 +9,6 @@ jobs:
     docker:
     - image: circleci/golang:1.11
     environment:
-      - GO111MODULE: "on"
       - GOCACHE: "/tmp/go/cache"
       - DEP_VERSION: 0.5.3
     steps:
