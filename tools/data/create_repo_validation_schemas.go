@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/guilhermesteves/github-repos-sort-api/internal/data/schema"
+	"github.com/guilhermesteves/github-repos-sort-api/internal/schema"
 	"github.com/guilhermesteves/github-repos-sort-api/internal/utils"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

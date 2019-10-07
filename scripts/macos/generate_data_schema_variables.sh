@@ -1,1 +1,1 @@
-go-bindata -o ../../internal/data/schema/schema.go -pkg schema -prefix api/data/ ../../api/data/schema
+go-bindata -o ../../internal/schema/schema.go -pkg schema -prefix api/data/ ../../api/data/schema
