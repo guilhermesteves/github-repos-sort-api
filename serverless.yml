@@ -1,0 +1,30 @@
+service: gh-repost-sort
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: us-west-1
+  memorySize: 128
+
+package:
+  exclude:
+  - ./**
+  include:
+  - ./build/**
+
+functions:
+  repos:
+    handler: build/repos
+    events:
+    - http:
+        path: /
+        method: get
+  like:
+    handler: build/like
+    events:
+    - http:
+        path: /like
+        method: post
+    - http:
+        path: /like
+        method: delete
