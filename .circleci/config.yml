@@ -50,7 +50,7 @@ jobs:
       - run:
           name: "Run Tests & Coverage for codecov"
           command: |
-            go test -coverprofile=c.out
+            go test ./... -coverprofile=c.out
             go tool cover -html=c.out -o coverage.html
             mv coverage.html /tmp/artifacts
       - store_artifacts:
