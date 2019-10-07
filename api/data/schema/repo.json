@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "description": "Estrutura que representa uma pessoa",
+  "required": [
+    "_id",
+    "likes",
+    "github"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Node id from Github"
+    },
+    "likes": {
+      "type": "number",
+      "description": "Quantos likes na plataforma"
+    },
+    "github": {
+      "type": "object",
+      "description": "Informações sobre o repositório",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Id do github"
+        },
+        "fullname": {
+          "type": "string",
+          "description": "Nome completo no github"
+        },
+        "name": {
+          "type": "string",
+          "description": "Nome no github"
+        },
+        "description": {
+          "type": "string",
+          "description": "Descrição no github"
+        },
+        "homepage": {
+          "type": "string",
+          "description": "Homepage do repo"
+        },
+        "defaultBranch": {
+          "type": "string",
+          "description": "Branch default do repo"
+        },
+        "pushedAt": {
+          "bsonType": "date",
+          "description": "Data da última alteração"
+        },
+        "cloneUrl": {
+          "type": "string",
+          "description": "Url para clone"
+        },
+        "htmlUrl": {
+          "type": "string",
+          "description": "Url para acesso"
+        },
+        "forks": {
+          "type": "number",
+          "description": "Número de forks"
+        },
+        "stars": {
+          "type": "number",
+          "description": "Número de forks"
+        }
+      }
+    },
+    "createdAt": {
+      "bsonType": "date",
+      "description": "Data de criação"
+    },
+    "updatedAt": {
+      "bsonType": "date",
+      "description": "Data da última alteração"
+    }
+  }
+}
