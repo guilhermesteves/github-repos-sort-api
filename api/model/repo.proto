@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "github.com/guilhermesteves/github-repos-sort-api/internal/model";
+
+import "github_repo.proto";
+
+message Repo {
+    string id = 1;
+    GithubRepo githubRepo = 2;
+    int64 likes = 3;
+    repeated string likedBy = 4;
+    bool liked = 5;
+    string createdAt = 6;
+    string updatedAt = 7;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+option go_package = "github.com/guilhermesteves/github-repos-sort-api/internal/model";
+
+message GithubRepo {
+    int64 id = 1;
+    string fullName = 2;
+    string name = 3;
+    string description = 4;
+    string homepage = 5;
+    string defaultBranch = 6;
+    string pushedAt = 7;
+    string cloneUrl = 8;
+    string htmlUrl = 9;
+    int64 forks = 10;
+    int64 stars = 11;
+}
