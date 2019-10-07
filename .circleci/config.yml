@@ -9,6 +9,7 @@ jobs:
     - image: circleci/golang:1.11
     steps:
     - checkout
+    - run: go get -u github.com/golang/dep/cmd/dep
     - run:
         name: "Build"
         command: |
