@@ -12,13 +12,15 @@ jobs:
     - run:
         name: "Build"
         command: |
-          make build
+          dep ensure -v
+          GOOS=linux go build -ldflags="-s -w" -o build/like cmd/like/main.go
+          GOOS=linux go build -ldflags="-s -w" -o build/repos cmd/repos/main.go
     - run:
         name: "Create a temporary directory for artifacts"
         command: |
           mkdir -p /tmp/artifacts
     - run:
-        name: "Run Tests & Coverage"
+        name: "Run Tests & Coverage for codecov"
         command: |
           go test -coverprofile=c.out
           go tool cover -html=c.out -o coverage.html
