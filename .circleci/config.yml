@@ -5,31 +5,56 @@ orbs:
 
 jobs:
   build:
+    working_directory: /go/src/github.com/guilhermesteves/github-repos-sort-api
     docker:
     - image: circleci/golang:1.11
-    working_directory: /go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
     environment:
-      GO111MODULE: "on"
+      - GO111MODULE: "on"
+      - GOCACHE: "/tmp/go/cache"
+      - DEP_VERSION: 0.5.3
     steps:
-    - checkout
-    - run: go get -u github.com/golang/dep/cmd/dep
-    - run:
-        name: "Build"
-        command: |
-          dep ensure -v
-          GOOS=linux go build -ldflags="-s -w" -o build/like cmd/like/main.go
-          GOOS=linux go build -ldflags="-s -w" -o build/repos cmd/repos/main.go
-    - run:
-        name: "Create a temporary directory for artifacts"
-        command: |
-          mkdir -p /tmp/artifacts
-    - run:
-        name: "Run Tests & Coverage for codecov"
-        command: |
-          go test -coverprofile=c.out
-          go tool cover -html=c.out -o coverage.html
-          mv coverage.html /tmp/artifacts
-    - store_artifacts:
-        path: /tmp/artifacts
-    - codecov/upload:
-        file: /tmp/artifacts/coverage.html
+      - checkout
+      - restore_cache:
+          key: gopkg-{{ .Branch }}-{{ checksum "Gopkg.lock" }}
+          paths:
+            - /go/src/github.com/your_company/your_app/vendor
+      - run:
+          name: download-libraries
+          command: |
+            if [ ! -d /go/src/github.com/guilhermesteves/github-repos-sort-api/vendor ]; then
+                curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+                /go/bin/dep ensure
+            fi
+      - save_cache:
+          key: gopkg-{{ .Branch }}-{{ checksum "Gopkg.lock" }}
+          paths:
+            - /go/src/github.com/guilhermesteves/github-repos-sort-api/vendor
+      - restore_cache:
+          keys:
+            - build-cache-{{ .Branch }}-{{ .Environment.CIRCLE_PREVIOUS_BUILD_NUM }}
+          paths:
+            - /tmp/go/cache
+      - run:
+          name: "Build"
+          command: |
+            export GOOS=linux
+            go build -ldflags="-s -w" -o build/like cmd/like/main.go
+            go build -ldflags="-s -w" -o build/repos cmd/repos/main.go
+      - save_cache:
+          key: build-cache-{{ .Branch }}-{{ .Environment.CIRCLE_BUILD_NUM }}
+          paths:
+            - /tmp/go/cache
+      - run:
+          name: "Create a temporary directory for artifacts"
+          command: |
+            mkdir -p /tmp/artifacts
+      - run:
+          name: "Run Tests & Coverage for codecov"
+          command: |
+            go test -coverprofile=c.out
+            go tool cover -html=c.out -o coverage.html
+            mv coverage.html /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+      - codecov/upload:
+          file: /tmp/artifacts/coverage.html
