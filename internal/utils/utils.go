@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"log"
 	"os"
 	"time"
 
@@ -19,6 +20,12 @@ func Exists(path string) bool {
 		return false
 	}
 	return true
+}
+
+func Check(err error) {
+	if err != nil {
+		log.Panic(err)
+	}
 }
 
 func CheckIf(condition bool, ifTrue interface{}, ifFalse interface{}) interface{} {
