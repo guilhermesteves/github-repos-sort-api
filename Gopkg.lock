@@ -2,6 +2,20 @@
 
 
 [[projects]]
+  digest = "1:20114d717d92911b2e1adeae28e1e2740929a006abfd86526967feff429ba93b"
+  name = "github.com/aws/aws-lambda-go"
+  packages = [
+    "events",
+    "lambda",
+    "lambda/handlertrace",
+    "lambda/messages",
+    "lambdacontext",
+  ]
+  pruneopts = "UT"
+  revision = "e5086e5a7e53f7039034fa29008221760b04ff79"
+  version = "v1.13.2"
+
+[[projects]]
   digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
@@ -64,6 +78,22 @@
   pruneopts = "UT"
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
   version = "v1.0.0"
+
+[[projects]]
+  branch = "develop"
+  digest = "1:d89a0b9e38c6aedda7902757c235282b1628f33448fa778333d9bc138f692783"
+  name = "github.com/queroquitar/qq"
+  packages = ["pkg/notification/util"]
+  pruneopts = "UT"
+  revision = "fa3d47c8a0dc881b00002f7efcb48fcf18df14df"
+
+[[projects]]
+  digest = "1:08d65904057412fc0270fc4812a1c90c594186819243160dc779a402d4b6d0bc"
+  name = "github.com/spf13/cast"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "8c9545af88b134710ab1cd196795e7f2388358d7"
+  version = "v1.3.0"
 
 [[projects]]
   digest = "1:8548c309c65a85933a625be5e7d52b6ac927ca30c56869fae58123b8a77a75e1"
@@ -216,10 +246,16 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/aws/aws-lambda-go/events",
+    "github.com/aws/aws-lambda-go/lambda",
+    "github.com/golang/protobuf/proto",
     "github.com/google/go-github/github",
     "github.com/joho/godotenv",
+    "github.com/queroquitar/qq/pkg/notification/util",
+    "github.com/spf13/cast",
     "github.com/stretchr/testify/assert",
     "go.mongodb.org/mongo-driver/bson",
+    "go.mongodb.org/mongo-driver/bson/primitive",
     "go.mongodb.org/mongo-driver/mongo",
     "go.mongodb.org/mongo-driver/mongo/options",
     "golang.org/x/oauth2",
