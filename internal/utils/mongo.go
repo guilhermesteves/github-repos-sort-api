@@ -35,6 +35,23 @@ func ConnectOnMongo() (*mongo.Client, error) {
 	}
 }
 
+func DisconnectFromMongo(client *mongo.Client) error {
+	err := client.Disconnect(context.TODO())
+
+	if err != nil {
+		time.Sleep(time.Second * 1)
+		log.Println(err.Error())
+		mongoTries++
+		if mongoTries > 10 {
+			return err
+		}
+		log.Println("Trying again...")
+		return DisconnectFromMongo(client)
+	}
+
+	return nil
+}
+
 func CursorToArray(ctx context.Context, cursor *mongo.Cursor) bson.A {
 	var result = bson.A{}
 
