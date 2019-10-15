@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	// FIXME: ensure collection via each schema
 	db, err := utils.ConnectOnMongo()
 
 	if err != nil {
