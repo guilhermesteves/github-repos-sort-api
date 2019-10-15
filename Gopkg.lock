@@ -80,14 +80,6 @@
   version = "v1.0.0"
 
 [[projects]]
-  branch = "develop"
-  digest = "1:d89a0b9e38c6aedda7902757c235282b1628f33448fa778333d9bc138f692783"
-  name = "github.com/queroquitar/qq"
-  packages = ["pkg/notification/util"]
-  pruneopts = "UT"
-  revision = "fa3d47c8a0dc881b00002f7efcb48fcf18df14df"
-
-[[projects]]
   digest = "1:08d65904057412fc0270fc4812a1c90c594186819243160dc779a402d4b6d0bc"
   name = "github.com/spf13/cast"
   packages = ["."]
@@ -251,7 +243,6 @@
     "github.com/golang/protobuf/proto",
     "github.com/google/go-github/github",
     "github.com/joho/godotenv",
-    "github.com/queroquitar/qq/pkg/notification/util",
     "github.com/spf13/cast",
     "github.com/stretchr/testify/assert",
     "go.mongodb.org/mongo-driver/bson",
