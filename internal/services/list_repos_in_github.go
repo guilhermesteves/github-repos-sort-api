@@ -53,8 +53,6 @@ func ListReposInGithub(language string, page int) ([]*model.Repo, error) {
 		repos = append(repos, &model.Repo{
 			Id:			*repo.NodeID,
 			GithubRepo: githubRepo,
-			Likes:		0,
-			LikedBy: 	[]string{},
 		})
 	}
 
