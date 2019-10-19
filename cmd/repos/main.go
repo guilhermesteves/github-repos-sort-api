@@ -12,10 +12,6 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	language := request.QueryStringParameters["lang"]
 	page := cast.ToInt(request.QueryStringParameters["page"])
 
-	if language == "" {
-		language = "go"
-	}
-
 	body, err := api.ListRepos(language, page)
 
 	if err != nil {

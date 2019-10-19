@@ -7,6 +7,8 @@ import (
 )
 
 func ListRepos(lang string, page int) (string, error) {
+	lang = validate(lang)
+
 	repos, err := services.ListReposInGithub(lang, page)
 
 	if err != nil {
@@ -20,4 +22,21 @@ func ListRepos(lang string, page int) (string, error) {
 	}
 
 	return utils.ApiResult(repos), nil
+}
+
+func validate(language string) string {
+	if language == "" {
+		language = "go"
+	}
+
+	accepted := []string{
+		"javascript", "python", "java", "ruby", "php", "c++", "c#", "go", "c", "swift", "scala", "objective-c",
+	}
+
+	for _, l := range accepted {
+		if l == language {
+			return l
+		}
+	}
+	return "go"
 }
